@@ -1,0 +1,15 @@
+a. For this project, I had to fix logic errors with calculating the total price. I had to rewrite my if-statement tree and thoroughly test my code. For this project I also wanted to create backups in case my personal laptop got lost. I spent quite a bit of time working out git and github and connecting a remote repository to my local repository. 
+b. 
+("harvard", 100, "university")
+("harvard", 400, "university")
+("harvard", 700, "university")
+("harvard", 800, "university")
+("harvard", 1234, "university")
+("NBC", 500, "media")
+("NBC", 778, "media")
+("NBC", 160, "entertainment")
+("NBC", 760, "entertainment")
+("NBC", 0, "entertainment")
+("NBC", 0, "")
+("NBC", 12, "")
+("", 12, "")

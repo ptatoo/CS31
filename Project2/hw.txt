@@ -1,0 +1,43 @@
+1. The output is the following:
+endl
+
+grendel
+2. The program takes an integer then prints a right isoseles triangle of #'s with height of the input.
+3. 
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int side;
+
+    cout << "Enter a number: ";
+    cin >> side;
+    int count = 0;
+    while (count < side)
+    {
+        for (int j = count; j >= 0; j--)
+        {
+            cout << "#";
+        }
+        cout << "\n";
+        count ++;
+    }
+}
+4.
+switch (codeSection) {
+    case (codeSection == 521):
+		cout << "extortion";
+        break;
+	case (codeSection == 321  ||  codeSection == 322):
+		cout << "selling illegal lottery tickets";
+        break;
+	case (codeSection == 383):
+		cout << "selling rancid butter";
+        break;
+	case (codeSection == 598):
+		cout << "injuring a bird in a public cemetery";
+        break;
+	default:
+		cout << "some other crime";
+}
