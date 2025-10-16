@@ -1,8 +1,7 @@
 1. The output is the following:
-endl
-
+endlendl
 grendel
-2. The program takes an integer then prints a right isoseles triangle of #'s with height of the input.
+2. The program takes an integer then prints a right isoseles triangle of #'s with height and base of the input.
 3. 
 #include <iostream>
 using namespace std;
@@ -26,18 +25,22 @@ int main()
 }
 4.
 switch (codeSection) {
-    case (codeSection == 521):
-		cout << "extortion";
+    case (521):
+        cout << "extortion";
         break;
-	case (codeSection == 321  ||  codeSection == 322):
-		cout << "selling illegal lottery tickets";
+    case (321):
+        cout << "selling illegal lottery tickets";
         break;
-	case (codeSection == 383):
-		cout << "selling rancid butter";
+    case (322):
+        cout << "selling illegal lottery tickets";
         break;
-	case (codeSection == 598):
-		cout << "injuring a bird in a public cemetery";
+    case (383):
+        cout << "selling rancid butter";
         break;
-	default:
-		cout << "some other crime";
+    case (598):
+        cout << "injuring a bird in a public cemetery";
+        break;
+    default:
+        cout << "some other crime";
+}
 }
