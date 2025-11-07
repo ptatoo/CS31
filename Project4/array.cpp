@@ -6,7 +6,9 @@ using namespace std;
 
 //1
 int repeat(string a[], int n) {
+    //edge case
     if (n < 0) return -1;
+    
     for (int i = 0; i < n; i++) {
         a[i] = a[i] + a[i];
     }
@@ -15,7 +17,9 @@ int repeat(string a[], int n) {
 
 //2
 int detectMatch(const string a[], int n, string target) {
+    //edge case
     if (n < 0) return -1;
+
     for (int i = 0; i < n; i++) {
         if (a[i] == target) return i;
     }
@@ -24,9 +28,12 @@ int detectMatch(const string a[], int n, string target) {
 
 //3
 int detectMax(const string a[], int n) {
+    //edge case
     if (n <= 0) return -1;
+
     int max = 0;
     for (int i = 0; i < n; i++) {
+        //updates max if bigger value found
         if (a[i] > a[max]) max=i;
     }
     return max;
@@ -34,7 +41,9 @@ int detectMax(const string a[], int n) {
 
 //4
 int circleLeft(string a[], int n, int pos) {
+    //edge case
     if (n < 0 || pos < 0) return -1;
+
     string eliminated = a[pos];
     for (int i = pos; i < n - 1; i++) {
         a[i] = a[i+1];
@@ -45,11 +54,13 @@ int circleLeft(string a[], int n, int pos) {
 
 //5
 int enumerateRuns(const string a[], int n) {
+    //edge cases
     if (n <= 0) return -1;
     if (n == 0) return 0;
 
     int count = 1;
     for (int i = 1; i < n; i++) {
+        //checks if conseq values are different
         if (a[i-1] != a[i]) count++;
     }
     return count;
@@ -57,7 +68,10 @@ int enumerateRuns(const string a[], int n) {
 
 //6
 int flip(string a[], int n) {
+    //edge case
     if (n < 0) return -1;
+
+    //loops through half the array, swaping corresponding front-back values
     for (int i = 0; i < n/2; i++) {
         string temp = a[i];
         a[i] = a[n-1-i];
@@ -68,11 +82,13 @@ int flip(string a[], int n) {
 
 //7
 int detectDifference(const string a1[], int n1, const string a2[], int n2) {
+    //edge case and finding min
     if (n1 < 0 || n2 < 0) return -1;
     int min = 0;
     if (n1 < n2) min = n1;
     else min = n2;
 
+    //loops through min of n1 and n2 looking for differences
     for (int i = 0; i < min; i++) {
         if (a1[i] != a2[i]) return i;
     }
@@ -81,6 +97,7 @@ int detectDifference(const string a1[], int n1, const string a2[], int n2) {
 
 //8
 int subsequence(const string a1[], int n1, const string a2[], int n2) {
+    //edge cases
     if (n1 < 0 || n2 < 0) return -1;
     if (n2 == 0) return 0;
 
@@ -88,6 +105,7 @@ int subsequence(const string a1[], int n1, const string a2[], int n2) {
         int output = i;
         for (int j = 0; j < n2; j++) {
             if (a1[i+j] != a2[j]) {
+                //if smth doesnt match, output is set to -1
                 output = -1;
             }
         }
@@ -98,8 +116,10 @@ int subsequence(const string a1[], int n1, const string a2[], int n2) {
 
 //9
 int detectAny(const string a1[], int n1, const string a2[], int n2) {
+    //edge case
     if (n1 < 0 || n2 < 0) return -1;
 
+    //loops through both arrays
     for (int i = 0; i < n1; i++) {
         for (int j = 0; j < n2; j++) {
             if (a1[i] == a2[j]) return i;
@@ -110,10 +130,12 @@ int detectAny(const string a1[], int n1, const string a2[], int n2) {
 
 //10
 int split(string a[], int n, string splitter) {
+    //edge case
     if (n < 0) return -1;
 
     int index = 0;
     for (int i = 0; i < n; i++) {
+        //if a smaller value is found, its sent to front
         if (a[i] < splitter) {
             string temp = a[index];
             a[index] = a[i];
@@ -121,7 +143,7 @@ int split(string a[], int n, string splitter) {
             index ++;
         }
     }
-    
+
     return index;
 }
 
