@@ -1,0 +1,87 @@
+a. Some obstacles were managing to track how many "freeze beats" have passed, figuring out which beat is exactly the badBeat, and organizing the entire structure since there were so many if statements
+b. The program is as follows:
+
+isSyntacticallyCorrect(dance):
+    directions = all directions possible
+    while a beat (/) is found in dance:
+        prefix = dance values before first beat (/)
+        dance = everything after first beat (/)
+
+        if: the beat contains nothing, continue
+        else if: the beat contains a digit and a direction, continue
+        else if: the beat contains 2 digits and a direction, continue
+        else: the beat is syntactically INcorrect, return false
+        
+    if: there is smth after the last beat, return false 
+
+    return true (no errors found)
+
+translateDance:
+    if dance isn't syntactically correct return 1
+
+    set beatCount to 0
+    set freezeCount to 0;
+    set the output (aka instruction) to ""
+    set the freezeValue to ' '
+
+    while a beat (/) is found in dance:
+        prefix = dance values before first beat (/)
+        dance = everything after first beat (/)
+        increment beatCount by 1
+
+        if the beat is a freeze and its too short (0-1):
+            badBeat = the current beat (aka beatCount)
+            return 2
+
+        else if their is a freeze in effect, but we have a new direction:
+            badBeat = the current beat (aka beatCount)
+            return 3
+
+        else if there is a freeze:
+            set the freezeCount to length of the freeze
+            set the freezeValue to the current freeze direction
+        
+        //from here on, we know there are no errors
+        //we must add beat directions to output
+        if the beat is just a direction:
+            output += direction
+        else if a freeze is in effect:
+            output += freeze value that created the freeze
+        else if its just an empty beat:
+            output += "." for empty beat
+
+        if freezount is positive, aka freeze in effect:
+            decrement freeze by 1
+
+    //dance is done
+    if a freeze is still in effect:
+            badBeat = the current beat (aka beatCount) + 1
+            return 4
+
+    instructions = output
+    return 0
+
+c. "///"
+""
+"d/"
+"e/"
+"1d/"
+"10r/"
+"105r/"
+"r1/"
+"10e/"
+"d/r/l/u/D/R/L/U"
+"d/10r/4d/5u/d/d/l/"
+"d"
+"e"
+"//d/d"
+"d/d/5r//"
+"0r/"
+"1r/"
+"01r/"
+"00r/"
+"0r1/"
+"R/u/U/u/D/"
+"03u///10r//////////"
+"d/3r//u/0d//2u/"
+"d/10r//d/"
