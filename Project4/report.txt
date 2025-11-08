@@ -1,0 +1,59 @@
+a. Some obstacles i overcame was checking edge cases (notably, n = 0) and making sure the code works as expected. I also had trouble with split string, as i initially was moving large elements to the back when it is easier to just move small elements to the front. 
+b. 
+NOTE: assume all values in the arrays are strings
+
+repeat({a, b, c}, 3) -> standard test
+repeat({asdf, 1234, eeee}, 2) -> standard test
+repeat({a b}, -1) -> array length -1
+
+detectMatch({a, b, c, d, e}, 5, c) -> standard test
+detectMatch({a, c, c, c, e}, 5, c) -> standard test
+detectMatch({a, 1, d, e, f}, 5, w) -> no such string exception
+detectMatch({aasdf, d}, 0, f) -> array length 0
+detectMatch({aasdf, d}, -1, f) -> array length -1
+
+detectMax({a, b, c, d, e}, 5) -> standard test
+detectMax({e, d, c, b, a}, 5) -> standard test
+detectMax({a, w, c, d, w}, 5) -> two largest elements
+detectMax({a, b, c, d, e}, 0) -> function examines no elements
+detectMax({a, b, c, d, e}, -1) -> array length -1
+
+circleLeft({a, b, c, d, e}, 5, 2) -> standard test
+circleLeft({a, b, c, d, e}, 5, 0) -> standard test
+circleLeft({a, b, c, d, e}, 5, 4) -> last element as pos
+circleLeft({a, b, c, d, e}, -1, 3) -> array length -1
+
+enumerateRuns({a, a, a, b, c}, 5) -> standard test
+enumerateRuns({a, b, c, d, e}, 5) -> standard test
+enumerateRuns({a, b, c, d, e}, 0) -> no elements
+enumerateRuns({a, b, c, d, e}, -1) -> array length -1
+
+flip({a, b, c, d, e}, 5) -> odd elements
+flip({a, b, c, d, e, f}, 6) -> even element
+flip({a, b, c, d, e}, 0) -> no elements
+flip({a, b, c, d, e}, -1) -> array length -1
+
+detectDifference({a, b, c, d, e}, 5, {a, b, c, e}, 3) -> standard test
+detectDifference({a, b, c, d}, 4, {a, b, c, d, e}, 5) -> standard test
+detectDifference({a, b, c, d, e}, 5, {a, b, c, d}, 3) -> no difference
+detectDifference({a, b, c, d, e}, 5, {}, 0) -> empty array
+detectDifference({a, b, c, d, e}, 5, {}, -1) -> array length -1
+
+subsequence({a, b, c, d, e}, 5, {b, c, d}, 3) -> standard test
+subsequence({a, b, c, d, e, b, c, d}, 8, {b, c, d}, 3) -> two subsequences
+subsequence({a, b, c, d, e}, 5, {a, a, a}, 3) -> no subsequence
+subsequence({a, b, c, d, e}, 5, {b}, 0) -> empty array
+subsequence({a, b, c, d, e}, 5, {b}, -1) -> array length -1
+
+detectAny({a, b, c, d, e}, 5, {d, e, f}, 3) - > standard test
+detectAny({a, b, b, b, e}, 5, {b, e, f}, 3) - > duplicate elements
+detectAny({a, b, c, d, e}, 5, {w, s, g}, 3) - > no elements
+detectAny({a, b, c, d, e}, 5, {w, s, g}, 0) - > empty array
+detectAny({a, b, c, d, e}, 5, {w, s, g}, -1) - > array length -1
+
+split({a, h, g, e, d}, 5, f) -> standard test
+split({w, h, g, e, a}, 5, f) -> standard test
+split({b, h, g, e, d}, 5, a) -> standard test
+split({a, h, g, e, d}, 5, z) -> no elements <splitter
+split({a, h, g, e, d}, 0, f) -> empty array
+split({a, h, g, e, d}, -1, f) -> array length -1

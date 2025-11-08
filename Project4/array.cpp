@@ -8,7 +8,7 @@ using namespace std;
 int repeat(string a[], int n) {
     //edge case
     if (n < 0) return -1;
-    
+
     for (int i = 0; i < n; i++) {
         a[i] = a[i] + a[i];
     }
@@ -55,7 +55,7 @@ int circleLeft(string a[], int n, int pos) {
 //5
 int enumerateRuns(const string a[], int n) {
     //edge cases
-    if (n <= 0) return -1;
+    if (n < 0) return -1;
     if (n == 0) return 0;
 
     int count = 1;
