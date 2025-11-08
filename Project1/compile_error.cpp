@@ -8,9 +8,8 @@ int main()
 {
     int numberSurveyed;
     int hunters;
-    int club
-
-    cout << "How many people were surveyed? ;
+    int club;
+    cout << "How many people were surveyed?;
     cin >> numberSurveyed;
     cout << "How many of them prefer KPop Demon Hunters to The Thursday Murder Club? ";
     cin >> hunters;
