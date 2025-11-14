@@ -8,15 +8,20 @@ using namespace std;
 int writeToFile(int *counter, int lineLength, ostream& outf, char output[121], int numAddedSpaces, bool *newPara) {
     //writes a new paragraph
     if (!strcmp(output, "<P>")) {
-        if (!*newPara) {
+        if (numAddedSpaces == 0 && !*newPara) {
+            outf << output;
+            *counter += static_cast<int>(strlen(output)) + numAddedSpaces;
+        }
+        else if (!*newPara) {
             outf << endl << endl;
             *counter = 0;
             *newPara = true;
-        }
-        else *newPara = false;
+        } 
+        return 0;
     }
+    *newPara = false;
     //word is longer then lineLength
-    else if (strlen(output) > lineLength) {
+    if (strlen(output) > lineLength) {
         //adds req. whitespace before word-portion
         if (*counter != 0) {
             for (int i = 0; i < numAddedSpaces; i++) outf << ' ';
@@ -25,12 +30,11 @@ int writeToFile(int *counter, int lineLength, ostream& outf, char output[121], i
         //adds characters, and new lines when necessary
         for (int i = 0; i < strlen(output); i++) {
             if (*counter >= lineLength) {
-                outf << endl << output[i];
-                *counter = 1;
-            } else {
-                outf << output[i];
-                *counter += 1;
+                outf << endl;
+                *counter = 0;
             }
+            outf << output[i];
+            *counter += 1;
         }
         return 2;
     }
@@ -61,17 +65,16 @@ int arrange(int lineLength, istream& inf, ostream& outf) {
     int numAddedSpaces = 0;
     int returnValue = 0;
     char curChar[3] = {'a','\0', ' '};
-    char prevC = ' ';
+    char prevC = 'a';
     bool newPara = true;
 
     while (inf.get(curChar[0])) {
         //if space, write out input (word-portion)
         if (curChar[0] == ' ' || curChar[0] == '\n') {
-            if (strlen(output) != 0) {
-                if (writeToFile(&counter, lineLength, outf, output, numAddedSpaces, &newPara) == 2) returnValue = 2;
-                if ((prevC == '.' || prevC == '?' || prevC == ':')) numAddedSpaces = 2;
-                else numAddedSpaces = 1;
-            }
+            if (writeToFile(&counter, lineLength, outf, output, numAddedSpaces, &newPara) == 2) returnValue = 2;
+            if ((prevC == '.' || prevC == '?' || prevC == ':')) numAddedSpaces = 2;
+            else if (prevC == ' ') numAddedSpaces = 0;
+            else numAddedSpaces = 1;
             output[0] = '\0';
         }
         //if dash, write out input (word-portion)
@@ -84,7 +87,7 @@ int arrange(int lineLength, istream& inf, ostream& outf) {
         //else, add char to input (grow word-portion)
         else strcat(output, curChar);
         prevC = curChar[0];
-    }    
+    }
     if (writeToFile(&counter, lineLength, outf, output, numAddedSpaces, &newPara) == 2) returnValue = 2;
 
     return returnValue;
