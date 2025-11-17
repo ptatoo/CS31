@@ -12,7 +12,6 @@ int writeToFile(int *counter, int lineLength, ostream& outf, char output[121], i
     if (!strcmp(output, "<P>")) {
         if (numAddedSpaces == 0 && !*newPara) {
             outf << output;
-            cout << numAddedSpaces;
             *counter += static_cast<int>(strlen(output)) + numAddedSpaces;
         }
         else *newPara = true;
@@ -76,16 +75,15 @@ int arrange(int lineLength, istream& inf, ostream& outf) {
                 if (writeToFile(&counter, lineLength, outf, output, numAddedSpaces, &newPara) == 2) returnValue = 2;
                 if ((prevC == '.' || prevC == '?' || prevC == ':')) numAddedSpaces = 2;
                 else numAddedSpaces = 1;
+                output[0] = '\0';
             }
-            output[0] = '\0';
         }
         //if dash, write out input (word-portion)
         else if (curChar[0] == '-') {
             strcat(output, curChar);
             if (writeToFile(&counter, lineLength, outf, output, numAddedSpaces, &newPara) == 2) returnValue = 2;
-            output[0] = '\0';
-            cout << output;
             numAddedSpaces = 0;
+            output[0] = '\0';
         }
         //else, add char to input (grow word-portion)
         else strcat(output, curChar);

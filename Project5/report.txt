@@ -1,4 +1,67 @@
 a. I had obstacles in determining whether the <P> was a word portion, a stand alone word, if it came after multiple <P>s before it, or if it started or ended the entire input. 
 b. there are two functions that make up my code:
 
-writeToFile: takes in word portions and wr
+writeToFile -> takes in word portions and writes them into outf:
+    if (word portion is <P>)
+        if only a portion, print it
+        else indicate new paragraph needed
+    if new paragraph needed, print it
+
+    if word-portion too long to fit but doesnt need wraping:
+        print it
+        return 0
+    if we aren't at the start:
+        print white spaces
+    if word-portion needs wrap: 
+        print it with wraping
+        return 2
+    else, word portion is standard:
+        print it
+    return 0
+
+arrange -> reads character by character, creating a word-portion to send to writeToFile:
+    if (lineLength to small) return 1;
+    output[] -> buffer to hold word-portion
+    numAddedSpaces -> stores how many spaces needed before a word-portion
+    prevC -> previous character
+
+    while (takes in character) {
+        if char is whitespace:
+            if output isn't nothing:
+                writeToFile()
+                updates numAddedSpaces
+                reset word
+        else if char is '-':
+            add '-' to output
+            writeToFile();
+            update numAddedSpaces
+            reset word
+        else, char is a normal char:
+            add char to output
+        update prevC
+    }
+    write whatever is left in buffer
+    add newline to ended
+
+    return returnValue
+
+c. Test cases
+
+lineLength = 10, standard test: "Test test testing please work please." 
+lineLength = 10, multiple lines and multiple spaces: " \n  \n Test test testing \n  \n \n please work  \n  \n   please.   \n " 
+lineLength = 0, length too short: "AAAAAAAAAAAAAAAAAH" 
+lineLength = -5, length too short: "AAHAHAHAAAAAAAAAAAAAAAH"
+
+lineLength = 40, word too long: "    bla bla bla    bla bla bla       \n \n     aaaaaaaaaaaaaaaaaaaaaaaaaaaaa (30 long) "
+lineLength = 40, word extra too long: "    bla bla bla    bla bla bla       \n \n     
+\n aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (120 long) "
+
+lineLength = 10, word portions: "    bla-bla-bla-bla-bla-bla-bla-bla   \n ---bla. b---la \n bla-b---.  \n bl.a -- hi-there.   my-name-is-josua. \n      PERIOD-period"
+
+lineLength = 10, punctuation: "weee. period PERIOD. \n not period? \n \n  not a period woah! . . . . . . . . . .  \n huh"
+
+lineLength = 20, new paragraphs: "<P> <P> <P> <P> NEW  <P>  <P> <P>    \n \n <P>   \n  PARA <P>  <P>  GRAPH GRAPH GRAPH <P> <P> <P> <P> "
+
+lineLength = 0, no word: ""
+
+lineLength = 0, just whitespace: "    \n   \n \n \n   

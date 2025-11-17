@@ -1,11 +1,223 @@
-This is a
-test.  hh
-bla bla .
-bla ...
-teehee-
-bla.  w
+a.  I had
+obstacles
+in determi
+ning
+whether
+the
 
-bla tacos 
+was a
+word
+portion,
+a stand
+alone
+word, if
+it came
+after
+multiple
+<P>s
+before
+it, or if
+it
+started
+or ended
+the
+entire
+input.
+b.  there
+are two
+functions
+that make
+up my
+code:  wri
+teToFile
+-> takes
+in word
+portions
+and
+writes
+them into
+outf:  if
+(word
+portion
+is <P>)
+if only a
+portion,
+print it
+else
+indicate
+new
+paragraph
+needed if
+new
+paragraph
+needed,
+print it
+if word-
+portion
+too long
+to fit
+but
+doesnt
+need
+wraping:
+print it
+return 0
+if we
+aren't at
+the
+start:
+print
+white
+spaces if
+word-
+portion
+needs
+wrap:
+print it
+with
+wraping
+return 2
+else,
+word
+portion
+is
+standard:
+print it
+return 0
+arrange -
+> reads
+character
+by
+character,
+creating
+a word-
+portion
+to send
+to writeTo
+File:  if 
+(lineLengt
+h to
+small)
+return 1;
+output[]
+-> buffer
+to hold
+word-
+portion nu
+mAddedSpac
+es ->
+stores
+how many
+spaces
+needed
+before a
+word-
+portion
+prevC ->
+previous
+character
+while
+(takes in
+character)
+{ if char
+is whitesp
+ace:  if
+output
+isn't
+nothing:  
+writeToFil
+e()
+updates nu
+mAddedSpac
+es reset
+word else
+if char
+is '-':
+add '-'
+to output 
+writeToFil
+e();
+update num
+AddedSpace
+s reset
+word
+else,
+char is a
+normal
+char:
+add char
+to output
+update
+prevC }
+write
+whatever
+is left
+in buffer
+add
+newline
+to ended
+return ret
+urnValue
+c.  Test
+cases
+lineLength
+= 10,
+standard
+test:
+"Test
+test
+testing
+please
+work
+please."
+lineLength
+= 10,
+multiple
+lines and
+multiple
+spaces:
+" Test
+test
+testing
+please
+work
+please.
+"
+lineLength
+= 0,
+length
+too
+short:  "A
+AAAAAAAAAA
+AAAAAAH"
+lineLength
+= -5,
+length
+too
+short:  "A
+AHAHAHAAAA
+AAAAAAAAAA
+AH"
+lineLength
+= 40,
+word too
+long:  "
+bla bla
+bla bla
+bla bla aa
+aaaaaaaaaa
+aaaaaaaaaa
+aaaaaaa
+(30 long)
+"
+lineLength
+= 40,
+word
+extra too
+long:  "
+bla bla
+bla bla
+bla bla aa
 aaaaaaaaaa
 aaaaaaaaaa
 aaaaaaaaaa
@@ -17,15 +229,64 @@ aaaaaaaaaa
 aaaaaaaaaa
 aaaaaaaaaa
 aaaaaaaaaa
-aaaaaaaaaa
-taco-
-truck-
-going-to-
-beat-my-
-ass-
-checaks.
-w ooah?
+aaaa (120
+long) "
+lineLength
+= 10,
+word
+portions:
+" bla-
+bla-bla-
+bla-bla-
+bla-bla-
+bla ---
+bla.  b--
+-la bla-
+b---.
+bl.a --
+hi-there.
+my-name-
+is-josua.
+PERIOD-
+period"
+lineLength
+= 10, punc
+tuation:
+"weee.
+period
+PERIOD.
+not
+period?
+not a
+period
+woah! .
+.  .  .
+.  .  .
+.  .  .
+huh"
+lineLength
+= 20, new 
+paragraphs
+:  "<P>
 
-woah
-tacs-.  -<P>
-p<P>
+NEW
+
+PARA
+
+GRAPH
+GRAPH
+GRAPH
+
+"
+lineLength
+= 0, no
+word:  ""
+lineLength
+= 0, just 
+whitespace
+:  " addit
+ionally,
+i put my
+whole
+report as
+the input
