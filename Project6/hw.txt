@@ -1,0 +1,148 @@
+1a.
+int main()
+{
+    int arr[3] = { 5, 10, 15 };
+    int* ptr = arr;
+
+    *ptr = 30;          // set arr[0] to 30
+    *(ptr + 1) = 20;      // set arr[1] to 20
+    *(ptr + 2) = 10;        // set arr[2] to 10
+
+    while (ptr <= arr + 2)
+    {
+        cout << *ptr << endl;    // print values
+        ptr++;
+    }
+}
+
+1b.
+In the function the pointer is passed as a copy. After the function is run, the pointer is not actually changed. To fix it, you must change the parameter in the function:
+
+void findMax(int arr[], int n, int*& pToMax)
+{
+    if (n <= 0) 
+        return;      // no items, no maximum!
+
+    pToMax = arr;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] > *pToMax)
+                pToMax = arr + i;
+    }
+}       
+
+1c.
+in main, ptr is declared but not initialized. Thus it is pointing to a garbage value and leads to undefined behavior (and overwrites some random memory).
+
+int main()
+{
+    int i;
+    int* ptr = &i;
+    computeCube(5, ptr);
+    cout << "Five cubed is " << *ptr << endl;
+}
+
+1d.
+The issue is at when trying to compare the values in the arrays, the function is actually comparing the pointers to those values.
+
+// return true if two C strings are equal
+bool strequal(const char str1[], const char str2[])
+{
+
+    while (*str1 != 0  &&  *str2 != 0)  // zero bytes at ends
+    {
+        if (*str1 != *str2)  // compare corresponding characters
+            return false;
+        str1++;            // advance to the next character
+        str2++;
+    }
+    return *str1 == *str2;   // both ended at same time?
+}
+
+1e.
+in getPtrToArray, anArray is declared locally. when the function ends, c++ automatically deallocates its memory, causing its contents to be tampered with.
+
+2
+a. double* cat;
+b. double mouse[5];
+c. cat = mouse[5];
+d. *cat = 25;
+e. *(mouse + 3) = 42;
+f. cat -= 3;
+g. cat[1] = 42;
+h. cat[0] = 17;
+i. bool d = (cat == mouse);
+j. bool b = (*cat == *(cat + 1));
+
+3a.
+double mean(const double* scores, int numScores)
+{
+    const double* ptr = scores;
+    int index = 0;
+    double tot = 0;
+    while (ptr + index != scores + numScores)
+    {
+        tot += *(ptr + index);
+        index++;
+    }
+    return tot/numScores;
+}
+
+3b.
+const char* findTheChar(const char str[], char chr)
+{
+    for (int k = 0; *(str + k) != 0; k++)
+        if (*(str + k) == chr)
+            return &(str + k);
+
+    return nullptr;
+}
+
+3c.
+const char* findTheChar(const char str[], char chr)
+{
+    while(str != 0) {
+        if (*str == chr) return &str;
+        str++;
+    }
+
+    return nullptr;
+}
+
+4.
+The main function runs as follows:
+int array[6] = { 5, 3, 4, 17, 22, 19 }; -> declares an array
+int* ptr = maxwell(array, &array[2]); -> sets ptr to the first value in array, since array[0] > array[2]
+*ptr = -1; -> sets array[0] = -1
+ptr += 2; -> moves pointer left 2 so it points at array[2] instead
+ptr[1] = 9; -> sets array[3] = 9
+*(array+1) = 79; -> sets array[1] = 79;
+
+cout << &array[5] - ptr << endl; -> prints out the address of array[5] minus the address of array[2] (pointer). The addresses are 3 aparts, so cout prints 3.
+
+swap1(&array[0], &array[1]); -> This should do nothing because the values are passed by copy not by reference.
+swap2(array, &array[2]); -> this swaps array[0] and array[2], making array[0] = 4 and array[2] = -1
+
+for (int i = 0; i < 6; i++)
+            cout << array[i] << endl;
+prints out the values in the array in order. so it would print the following:
+4
+79
+-1
+9
+22
+19
+
+5.
+void removeS(char* ptr) {
+    char* freeSpace = ptr;
+    while (*ptr != 0) {
+        if (tolower(*ptr) != 's') {
+            *freeSpace = *ptr;
+            freeSpace++;
+        }
+        ptr++;
+    }
+    *freeSpace = '\0';
+}
